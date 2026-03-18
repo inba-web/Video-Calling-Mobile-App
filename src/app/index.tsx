@@ -8,7 +8,7 @@ export default function Index() {
   
   if(!isSignedIn){
     return <Redirect href={"/auth"} />;
-  }
+  } 
 
   return (
     <View style={styles.container}>
