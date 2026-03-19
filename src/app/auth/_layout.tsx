@@ -1,4 +1,4 @@
-import { useAuth } from '@clerk/expo'
+import { useAuth } from '@clerk/clerk-expo'
 import { Redirect, Stack } from 'expo-router'
 
 export default function AuthRoutesLayout() {
@@ -12,5 +12,5 @@ export default function AuthRoutesLayout() {
     return <Redirect href={'/'} />
   }
 
-  return <Stack />
+  return <Stack screenOptions={{headerShown: false}} />
 }
