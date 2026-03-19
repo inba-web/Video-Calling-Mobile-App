@@ -1,4 +1,4 @@
-import { View, Text } from "react-native";
+import { View, Text, TouchableOpacity, Pressable } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import useSocialAuth from "../hooks/useSocialAuth";
@@ -23,7 +23,7 @@ const index = () => {
         />
       </View>
 
-      <SafeAreaView className="flex-1">
+      <SafeAreaView className="flex-1 justify-between">
         {/* top section */}
         <View>
           <View className="items-center pt-10 pb-2">
@@ -34,6 +34,7 @@ const index = () => {
             <Text className="text-3xl font-extrabold text-foreground tracking-tight mt-4 font-mono">
               StudyBuddy
             </Text>
+            
             <Text className="text-foreground-muted text-[15px] mt-1.5 tracking-wide">
               Learn Together grow together
             </Text>
@@ -81,6 +82,32 @@ const index = () => {
                 </View>
               );
             })}
+          </View>
+        </View>
+
+        <View className="px-8 pb-4">
+          <View className="flex-row items-center gap-3 mb-6">
+            <View className="flex-1 h-px bg-border" />
+            <Text className="text-foreground-subtle text-xs font-medium tracking-widest uppercase">
+              Continue with
+            </Text>
+            <View className="flex-1 h-px bg-border" />
+          </View>
+
+          <View className="flex-row justify-center items-center gap-4mb-4">
+            {/* Google button */}
+            <Pressable
+              className="size-20 rounded-2xl bg-white items-center justify-center active:scale-95 shadow-lg shadow-white/10"
+              style={({ pressed }) => ({ opacity: pressed ? 0.85 : 1 })}
+              disabled={isLoading}
+              onPress={() => !isLoading && handleSocialAuth("oauth_google")}
+            >
+              <Image
+                source={require("../../../assets/images/google.png")}
+                style={{width:28, height:28}}
+                contentFit="contain" 
+              />
+            </Pressable>
           </View>
         </View>
       </SafeAreaView>
