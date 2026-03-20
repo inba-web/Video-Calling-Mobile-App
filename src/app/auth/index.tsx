@@ -1,4 +1,10 @@
-import { View, Text, TouchableOpacity, Pressable } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Pressable,
+  ActivityIndicator,
+} from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import useSocialAuth from "../hooks/useSocialAuth";
@@ -34,7 +40,7 @@ const index = () => {
             <Text className="text-3xl font-extrabold text-foreground tracking-tight mt-4 font-mono">
               StudyBuddy
             </Text>
-            
+
             <Text className="text-foreground-muted text-[15px] mt-1.5 tracking-wide">
               Learn Together grow together
             </Text>
@@ -94,21 +100,67 @@ const index = () => {
             <View className="flex-1 h-px bg-border" />
           </View>
 
-          <View className="flex-row justify-center items-center gap-4mb-4">
+          <View className="flex-row justify-center items-center gap-4 mb-4">
             {/* Google button */}
             <Pressable
               className="size-20 rounded-2xl bg-white items-center justify-center active:scale-95 shadow-lg shadow-white/10"
               style={({ pressed }) => ({ opacity: pressed ? 0.85 : 1 })}
               disabled={isLoading}
+              accessibilityRole="button"
+              accessibilityLabel="Continue with Google"
               onPress={() => !isLoading && handleSocialAuth("oauth_google")}
             >
-              <Image
-                source={require("../../../assets/images/google.png")}
-                style={{width:28, height:28}}
-                contentFit="contain" 
-              />
+              {loadingStrategy === "oauth_google" ? (
+                <ActivityIndicator size={"small"} color={"#6C5CE7"} />
+              ) : (
+                <Image
+                  source={require("../../../assets/images/google.png")}
+                  style={{ width: 28, height: 28 }}
+                  contentFit="contain"
+                />
+              )}
+            </Pressable>
+
+            {/* apple button */}
+            <Pressable
+              className="size-20 rounded-2xl bg-white items-center justify-center active:scale-95 shadow-lg shadow-white/10"
+              style={({ pressed }) => ({ opacity: pressed ? 0.85 : 1 })}
+              disabled={isLoading}
+              accessibilityRole="button"
+              accessibilityLabel="Continue with Apple"
+              onPress={() => !isLoading && handleSocialAuth("oauth_apple")}
+            >
+              {loadingStrategy === "oauth_apple" ? (
+                <ActivityIndicator size={"small"} color={"#6C5CE7"} />
+              ) : (
+                <Ionicons name="logo-apple" size={30} color="000" />
+              )}
+            </Pressable>
+
+            {/* github button */}
+            <Pressable
+              className="size-20 rounded-2xl bg-white items-center justify-center active:scale-95 shadow-lg shadow-white/10"
+              style={({ pressed }) => ({ opacity: pressed ? 0.85 : 1 })}
+              disabled={isLoading}
+              accessibilityRole="button"
+              accessibilityLabel="Continue with Github"
+              onPress={() => !isLoading && handleSocialAuth("oauth_github")}
+            >
+              {loadingStrategy === "oauth_github" ? (
+                <ActivityIndicator size={"small"} color={"#6C5CE7"} />
+              ) : (
+                <Ionicons name="logo-github" size={30} color="000" />
+              )}
             </Pressable>
           </View>
+
+          <Text className="text-foreground-subtle text-[11px] text-center loading-4">
+            By continuing you agree to our{" "}
+            <Text className="text-primary-light">Terms of Services</Text> and {" "}
+            <Text className="text-primary-light">Privacy Policy</Text>
+          </Text>
+
+
         </View>
       </SafeAreaView>
     </View>
