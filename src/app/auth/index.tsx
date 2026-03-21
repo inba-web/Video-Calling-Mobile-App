@@ -1,7 +1,6 @@
 import {
   View,
   Text,
-  TouchableOpacity,
   Pressable,
   ActivityIndicator,
 } from "react-native";
@@ -11,6 +10,9 @@ import useSocialAuth from "../hooks/useSocialAuth";
 import { LinearGradient } from "expo-linear-gradient";
 import { Ionicons } from "@expo/vector-icons";
 import { Image } from "expo-image";
+import * as WebBrowser from "expo-web-browser";
+
+WebBrowser.maybeCompleteAuthSession();
 
 const index = () => {
   const { handleSocialAuth, loadingStrategy } = useSocialAuth();

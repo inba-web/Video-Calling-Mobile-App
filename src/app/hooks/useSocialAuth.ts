@@ -8,7 +8,7 @@ const useSocialAuth = () => {
   const { startSSOFlow } = useSSO();
 
   const handleSocialAuth = async (
-    strategy: "oauth_google" | "oauth_apple" | "oauth_github"
+    strategy: "oauth_google" | "oauth_apple" | "oauth_github",
   ) => {
     if (loadingStrategy) return;
 
@@ -16,8 +16,6 @@ const useSocialAuth = () => {
 
     try {
       const redirectUrl = Linking.createURL("/oauth-native-callback");
-
-      console.log("Redirect URL:", redirectUrl); 
 
       const { createdSessionId, setActive } = await startSSOFlow({
         strategy,
@@ -36,12 +34,12 @@ const useSocialAuth = () => {
         strategy === "oauth_google"
           ? "Google"
           : strategy === "oauth_apple"
-          ? "Apple"
-          : "Github";
+            ? "Apple"
+            : "Github";
 
       Alert.alert(
         "Sign-in failed",
-        `${provider} sign-in failed. Please try again.`
+        `${provider} sign-in failed. Please try again.`,
       );
     } finally {
       setLoadingStrategy(null);
