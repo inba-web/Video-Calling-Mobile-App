@@ -11,6 +11,8 @@ expo-env.d.ts
 
 # local env files
 .ev.local
+.env
+.ev.local
 
 # Native
 .kotlin/
@@ -44,3 +46,9 @@ app-example
 # generated native folders
 /ios
 /android
+
+.env.local
+
+.env.local
+
+.env.local

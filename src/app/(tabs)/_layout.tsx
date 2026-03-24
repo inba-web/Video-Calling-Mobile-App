@@ -20,17 +20,17 @@ const TabsLayout = () => {
     <NativeTabs>
       <NativeTabs.Trigger name="index">
         <NativeTabs.Trigger.Label>Chats</NativeTabs.Trigger.Label>
-        <NativeTabs.Trigger.Icon sf="message" md="chat" />
+        <NativeTabs.Trigger.Icon sf="message" md="chat" selectedColor={"#6C5CE7"} />
       </NativeTabs.Trigger>
 
       <NativeTabs.Trigger name="explore">
         <NativeTabs.Trigger.Label>Explore</NativeTabs.Trigger.Label>
-        <NativeTabs.Trigger.Icon sf="safari" md="explore" />
+        <NativeTabs.Trigger.Icon sf="safari" md="explore" selectedColor={"#6C5CE7"} />
       </NativeTabs.Trigger>
 
       <NativeTabs.Trigger name="profile">
         <NativeTabs.Trigger.Label>Profile</NativeTabs.Trigger.Label>
-        <NativeTabs.Trigger.Icon sf="person.fill" md="person" />
+        <NativeTabs.Trigger.Icon sf="person.fill" md="person" selectedColor={"#6C5CE7"} />
       </NativeTabs.Trigger>
     </NativeTabs>
   );

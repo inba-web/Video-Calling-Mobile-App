@@ -36,6 +36,14 @@
             "imageWidth": 76
           }
         }
+      ],
+      [
+        "@sentry/react-native/expo",
+        {
+          "url": "https://sentry.io/",
+          "project": "video-calling-app",
+          "organization": "freelancing-qp"
+        }
       ]
     ],
     "experiments": {
