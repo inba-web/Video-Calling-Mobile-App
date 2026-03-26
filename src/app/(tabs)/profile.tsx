@@ -1,10 +1,11 @@
-import { View, Text, Pressable } from "react-native";
+import { View, Text, Pressable, Alert } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useAuth, useUser } from "@clerk/clerk-expo";
 import { Image } from "expo-image";
 import { Ionicons } from "@expo/vector-icons";
 import { COLORS } from "../lib/theme";
+import * as Sentry from "@sentry/react-native";
 
 const MENU_ITEMS = [
   {
@@ -95,6 +96,22 @@ const ProfileScreen = () => {
           </Pressable>
         ))}
       </View>
+
+      {/* sign out btn */}
+      <Pressable className="mt-6 mx-5 flex-row items-center justify-center gap-2 rounded-xl border border-[#FF6B6B33] bg-surface px-4 py-4"
+      onPress={async() => {
+        try {
+          await signOut();
+          Sentry.logger.info("User signed out successfully", {userId: user?.id});
+        } catch (error) {
+          Sentry.logger.error("Error signing out user", {userId: user?.id});
+          Sentry.captureException(error);
+          Alert.alert("Error", "An error occurred while signing out. Please try again.");
+        }
+      }}>
+        <Ionicons name="log-out-line" size={20} color={COLORS.danger} />
+        <Text className="text-base font-semibold text-danger">Sign Out</Text>
+      </Pressable>
       
     </SafeAreaView>
   );
