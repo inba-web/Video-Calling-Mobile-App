@@ -6,9 +6,9 @@ const SECRET_KEY = process.env.STREAM_SECRET_KEY as string
 export async function POST(request: Request){
     const client = StreamChat.getInstance(API_KEY, SECRET_KEY);
 
-    const body = await request.json()
+    const body = await request.json();
 
-    const userId = body?.userId
+    const userId = body?.userId;
 
     if(!userId){
         return Response.json({error: "userId is required"}, {status:400});
