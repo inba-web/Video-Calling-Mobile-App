@@ -34,6 +34,7 @@ Sentry.init({
 });
 
 export default function RootLayout() {
+
   return (
     <ClerkProvider tokenCache={tokenCache} publishableKey={publishableKey}>
       <GestureHandlerRootView className="flex-1">
