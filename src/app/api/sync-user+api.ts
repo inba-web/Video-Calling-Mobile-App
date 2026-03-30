@@ -15,7 +15,7 @@ export async function POST(request: Request) {
   }
 
   try {
-    await client.upsertUser({
+    await client.upsertUser({ 
       id: userId,
       name: name || "Guest",
       image: image,
