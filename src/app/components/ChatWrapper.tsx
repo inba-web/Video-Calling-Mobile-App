@@ -19,7 +19,6 @@ const syncUserToStream = async (user: UserResource) => {
         })
     } catch (error) {
         console.error("Failed to sync user to Stream:", error);
-
     }
 }
 
