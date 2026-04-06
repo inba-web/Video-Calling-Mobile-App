@@ -1,5 +1,4 @@
 import { StreamChat } from "stream-chat";
-
 const API_KEY = process.env.EXPO_PUBLIC_STREAM_API_KEY as string
 const SECRET_KEY = process.env.STREAM_SECRET_KEY as string
 
@@ -16,4 +15,4 @@ export async function POST(request: Request){
 
     const token = client.createToken(userId);
     return Response.json({token}, {status:200});
-}
+} 
