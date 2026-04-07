@@ -43,7 +43,7 @@ export default function RootLayout() {
         <AppProvider>
           <Stack screenOptions={{ headerShown: false }}>
             <Stack.Screen name="auth" />
-            <Stack.Screen name="(tabs)" /> 
+            <Stack.Screen name="(tabs)"/>  
           </Stack>
         </AppProvider>
         </ChatWrapper>

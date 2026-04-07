@@ -3,6 +3,7 @@ import type {UserResource} from "@clerk/types"
 import { useEffect, useRef } from "react";
 import { FullScreenLoading } from "./FullScreenLoading";
 import { Chat, OverlayProvider, useCreateChatClient } from "stream-chat-expo";
+import {studyBuddyTheme} from "../lib/theme";
 
 const STREAM_API_KEY =  process.env.EXPO_PUBLIC_STREAM_API_KEY;
 
@@ -61,8 +62,8 @@ const Chatclient = ({children,user}: {children: React.ReactNode,user:UserResourc
     }
 
     return(
-        <OverlayProvider>
-            <Chat client={chatClient} style={{}}>
+        <OverlayProvider value={{style:studyBuddyTheme}}>
+            <Chat client={chatClient} style={studyBuddyTheme}>
                 {children}
             </Chat>
         </OverlayProvider>
