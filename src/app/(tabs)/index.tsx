@@ -10,6 +10,8 @@ import { COLORS } from "../lib/theme";
 import { getGreetingHour } from "../lib/utils";
 import { TextInput } from "react-native-gesture-handler";
 import { ChannelList } from "stream-chat-expo";
+import type { Channel } from "stream-chat";
+
 
 const ChatsScreen = () => {
   const router = useRouter();
@@ -29,6 +31,18 @@ const ChatsScreen = () => {
   }
 
   const firstUserName = user.firstName || "there";
+
+  const channelRenderFilterFn = (channels: Channel[]) => {
+    if(!search.trim()) return channels;
+
+    const q = search.toLowerCase();
+
+    return channels.filter((channel) => {
+      const name = (channel.data?.name as string | undefined)?.toLowerCase() ?? "";
+      const cid = channel.cid.toLocaleLowerCase();
+      return name.includes(q) || cid.includes(q);
+    });
+  }
 
   return (
     <SafeAreaView className="flex-1 bg-background">
@@ -61,8 +75,21 @@ const ChatsScreen = () => {
 
       <ChannelList
         filters={filters} 
+        // state: true will fetch the intital full data . while watch:true will keep the channel updated with the latest data in real time
         options={{state:true, watch:true}}
+        sort={{last_updated: -1}}
+        channelRenderFilterFn={channelRenderFilterFn}
+        onSelect={(channel) => {
+          setChannel(channel);
+          // router.push(`/channel/${channel.id}`)
+        }}
+        additionalFlatListProps={{
+          contentContainerStyle: {flexGrow: 1},
+        }}  
+
+        // EmptyStateIndicator={() => <Text className="flex-1 text-white">Hey Start Chatting</Text>}
       />
+
     </SafeAreaView>
   );
 };
