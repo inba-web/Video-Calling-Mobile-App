@@ -4,6 +4,7 @@ import { useAppContext } from "../contexts/AppProvider";
 import { useUser } from "@clerk/clerk-expo";
 import { useChatContext } from "stream-chat-expo";
 import useStreamUsers from "../hooks/useStreamUsers";
+import useStartChat from "../hooks/useStartChat";
 
 const ExploreScreen = () => {
   const { setChannel } = useAppContext();
@@ -16,6 +17,7 @@ const ExploreScreen = () => {
 
   const { users, loading } = useStreamUsers(client, userId);
 
+  const {handleStartChart} = useStartChat({client,userId,setChannel,setCreating});
   return (
     <View>
       <Text>ExploreScreen</Text>
