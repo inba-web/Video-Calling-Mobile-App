@@ -5,6 +5,7 @@ import { FullScreenLoading } from "./FullScreenLoading";
 import { Chat, OverlayProvider, useCreateChatClient } from "stream-chat-expo";
 import {studyBuddyTheme} from "../lib/theme";
 
+
 const STREAM_API_KEY =  process.env.EXPO_PUBLIC_STREAM_API_KEY;
 
 if (!STREAM_API_KEY) {
