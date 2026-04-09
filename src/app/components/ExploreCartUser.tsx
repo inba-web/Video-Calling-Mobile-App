@@ -18,7 +18,7 @@ const ExploreCartUser = ({
         onPress={() => onStartChat(item.id)}
         disabled={creating !== null}
     >
-        <Image source={item.image}
+        <Image source={item.image} 
             style={{width: 40, height: 40, borderRadius: 24}}
             contentFit="cover"
          />
