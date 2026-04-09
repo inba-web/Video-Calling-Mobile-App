@@ -18,7 +18,7 @@ const ExploreCartUser = ({
   return (
     <Pressable
       className="flex-row items-center bg-surface rounded-2xl p-3.5 mb-2.5 border border-border gap-3.5"
-      onPress={() => onStartChat(item.id)}
+      onPress={() => onStartChat(item.id)} 
       disabled={creating !== null}
     >
       <Image
