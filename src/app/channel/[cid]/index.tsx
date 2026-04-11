@@ -4,7 +4,7 @@ import React from 'react'
 const ChannelScreen = () => {
   return (
     <View>
-      <Text>ChannelScreen</Text>
+      <Text>ChannelScreen</Text> 
     </View>
   )
 }
