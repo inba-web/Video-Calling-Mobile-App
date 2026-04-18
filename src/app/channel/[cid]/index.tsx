@@ -1,11 +1,14 @@
-import { View, Text } from 'react-native'
-import React, { use } from 'react'
+import { View, Text, TouchableOpacity, Image } from 'react-native'
+import React, { use, useLayoutEffect } from 'react'
 import { useAppContext } from '@/app/contexts/AppProvider'
 import { Channel, MessageInput, MessageList, useChatContext } from 'stream-chat-expo';
 import { useNavigation, useRouter } from 'expo-router';
-import { useHeaderHeight } from '@react-navigation/elements';
+import { headerTitle, useHeaderHeight } from '@react-navigation/elements';
 import { FullScreenLoading } from '@/app/components/FullScreenLoading';
 import EmptyState from '@/app/components/EmptyState';
+import { COLORS } from '@/app/lib/theme';
+import { Ionicons } from "@expo/vector-icons";
+
 
 const ChannelScreen = () => {
 
@@ -29,6 +32,41 @@ const ChannelScreen = () => {
 
   if(!channel) return <FullScreenLoading message='Loading study room...' />
 
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerShow: true,
+      headerStyle: {
+        backgroundColor: COLORS.surface
+      },
+      headerTintColor: COLORS.text,
+      headerLeft: () => {
+        <TouchableOpacity onPress={() => router.back()} className='ml-2 flex-row items-center'>
+          <Ionicons name='arrow-back' size={24} color={COLORS.text} />
+        </TouchableOpacity>
+      },
+      headerTitle: () => {
+        <View className='items-center flex-row'>
+          {avatarUl ? (
+            <Image source={avatarUl}  style={{height:32 , width: 32, borderRadius: 16, marginRight: 10}}/>
+          ) : (
+            <View className='mr-2.5 h-8 w-8 items-center justify-center rounded-full' style={{backgroundColor: COLORS.primary}}>
+              <Text className='text-base font-semibold text-foreground'>
+                {displayName.charAt(0).toUpperCase()}
+              </Text>
+            </View>
+          )
+          }
+          <Text className='font-semibold text-foreground'>{displayName}</Text>
+        </View>
+      },
+      headerRight: () => {
+        <TouchableOpacity onPress={() => {}}>
+          
+          <Ionicons name='videocam-outline' size={24} color={COLORS.primary} />
+        </TouchableOpacity>
+      }
+    })
+  },[])
 
   return (
     <View className='flex-1 bg-border'>
@@ -41,7 +79,7 @@ const ChannelScreen = () => {
       <MessageList
         onThreadSelect={(thread) => {
           setThread(thread);
-          router.push(`/channel/${channel.cid}/thread/${thread?.cid}`) 
+          // router.push(`/channel/${channel.cid}/thread/${thread?.cid}`) 
         }}
        />
 
