@@ -3,7 +3,7 @@ import React, { use, useLayoutEffect } from 'react'
 import { useAppContext } from '@/app/contexts/AppProvider'
 import { Channel, MessageInput, MessageList, useChatContext } from 'stream-chat-expo';
 import { useNavigation, useRouter } from 'expo-router';
-import { HeaderTitle, useHeaderHeight } from '@react-navigation/elements';
+import { headerTitle, useHeaderHeight } from '@react-navigation/elements';
 import { FullScreenLoading } from '@/app/components/FullScreenLoading';
 import EmptyState from '@/app/components/EmptyState';
 import { COLORS } from '@/app/lib/theme';
