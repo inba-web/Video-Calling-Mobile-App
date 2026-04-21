@@ -79,7 +79,7 @@ const ChannelScreen = () => {
       <MessageList
         onThreadSelect={(thread) => {
           setThread(thread);
-          // router.push(`/channel/${channel.cid}/thread/${thread?.cid}`) 
+          router.push(`/channel/${channel.cid}/thread/${thread?.cid}`) 
         }}
        />
 
