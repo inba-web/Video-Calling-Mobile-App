@@ -60,13 +60,15 @@ const ChannelScreen = () => {
         </View>
       },
       headerRight: () => {
-        <TouchableOpacity onPress={() => {}}>
+        <TouchableOpacity onPress={() => {
+          // todo: implement video call
+        }}>
           
           <Ionicons name='videocam-outline' size={24} color={COLORS.primary} />
         </TouchableOpacity>
       }
     })
-  },[])
+  },[navigation, displayName, avatarUl, channel?.cid, channel?.id, router]);
 
   return (
     <View className='flex-1 bg-border'>
